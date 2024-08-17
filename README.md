@@ -1,18 +1,20 @@
-Project Name
+Animal recognition
 ==============================
 
-This project is a starting Pack for MLOps projects based on the subject "road accident". It's not perfect so feel free to make some modifications on it.
+This project is a starting Pack for MLOps projects based on the subject "Animal recognition". It's not perfect so feel free to make some modifications on it.
 
 Project Organization
 ------------
 
     ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
+    ├── README.md               <- The top-level README for developers using this project.
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   ├── 1. Initial          <- The original, immutable data dump.
+    |   ├── 2. External         <- New data Collection
+    |   |   ├── 1. To_validate  <- New data awaiting label validation
+    |   |   ├── 2. Validated    <- New data with label validation
+    │   ├── 3. interim          <- Intermediate data that has been transformed.
+    │   ├── 4. processed        <- The final, canonical data sets for modeling.
     │
     ├── logs               <- Logs from training and predicting
     │
