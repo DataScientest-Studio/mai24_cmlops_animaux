@@ -7,51 +7,57 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── README.md               <- The top-level README for developers using this project.
+    ├── README.md                   <- The top-level README for developers using this project.
     ├── data
-    │   ├── 1. Initial          <- The original, immutable data dump.
-    |   ├── 2. External         <- New data Collection
-    |   |   ├── 1. To_validate  <- New data awaiting label validation
-    |   |   ├── 2. Validated    <- New data with label validation
-    │   ├── 3. interim          <- Intermediate data that has been transformed.
-    │   ├── 4. processed        <- The final, canonical data sets for modeling.
+    │   ├── 1. Initial              <- The original, immutable data dump.
+    |   ├── 2. External             <- New data Collection (Production)
+    │   ├── 3. interim              <- Intermediate data that has been transformed and waiting model
+    |   |                              integration
+    │   ├── 4. processed            <- The final, canonical data sets for modeling.
     │
-    ├── logs                    <- Logs from pipelines
+    ├── logs                        <- Logs from pipelines
     │
-    ├── models                  <- Trained and serialized models, model predictions, or model summaries
+    ├── models                      <- Trained and serialized models, model predictions, or model
+    |                                   summaries
     │
-    ├── notebooks               <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                           the creator's initials, and a short `-` delimited description, e.g.
-    │                           `1.0-jqp-initial-data-exploration`.
+    ├── notebooks                   <- Jupyter notebooks. Naming convention is a number (for ordering),
+    │                               the creator's initials, and a short `-` delimited description, e.g.
+    │                               `1.0-jqp-initial-data-exploration`.
     │
-    ├── references              <- Data dictionaries, manuals, and all other explanatory materials.
+    ├── references                  <- Data dictionaries, manuals, and all other explanatory materials.
+    |   ├── DATA_INIT_OTHERS.csv    <- URLs to download "Others" classe for initial dataset
+    │   |── DATA_INIT.zip           <- Initial data
+    |                                  https://www.kaggle.com/datasets/likhon148/animal-data
+    |
+    ├── reports                     <- Generated analysis as HTML, PDF, LaTeX, etc.
+    │   └── figures                 <- Generated graphics and figures to be used in reporting
     │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── requirements.txt            <- The requirements file for reproducing the analysis environment
+    |                                  (except train_model -> cf. requirements_dl.txt)
     │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
+    ├── src                         <- Source code for use in this project.
+    │   ├── __init__.py             <- Makes src a Python module
     │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   ├── __init__.py    
-    │   │   ├── data_utils.py
-    │   │   └── extract_dataset_init.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
+    │   ├── data                    <- Scripts to download and generate data
+    │   │   ├── __init__.py
+    |   |   ├── 01-initial_data_creation.py <- Pipeline for dataset init creation
+    |   |   ├── 03-TU_data.py               <- Unit tests for data
+    │   │   ├── data_utils.py               <- Usefull fonctions for data (eg. create folder, ...)
+    │   │   ├── extract_dataset_init.py     <- To extract DATA_INIT.zip to data/1. Initial
+    |   |   ├── pexels_api.py               <- Api to download pictures from https://www.pexels.com
+    │   │   └── preprocessing.py            <- Pictures preprocessing
     |   |
-    │   ├── pipelines           
-    │   │   ├── __init__.py    
-    │   │   ├── 01-initial_data_creation
-    │   │
-    │   ├── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │   │   └── visualize.py
-    │   └── config_path.py
+    │   ├── models                  <- Scripts to train models and then use trained models to make
+    │   │   │                          predictions
+    │   │   ├── 
+    │   │   └── 
+    |   |
+    │   ├── visualization           <- Scripts to create exploratory and results oriented visualizations
+    │   │   └── 
+    |   |
+    |   ├── .env.exemple            <- Environnement variables (to rename .env)
+    │   ├── config_manager.py
+    |   └── config_path.py
 
 ---------
 
@@ -69,12 +75,20 @@ Convention : All python scripts must be run from the root specifying the relativ
 
 ###   Install the packages from requirements.txt
 
-    `pip install -r .\requirements.txt` ### You will have an error in "setup.py" but this won't interfere with the rest
+    `pip install -r .\requirements.txt`
 
-### 2- Execute import_raw_data.py to import the 4 datasets.
+### 2- Execute '01-initial_data_creation' to create the initial dataset.
 
-    `python .\src\data\import_raw_data.py` ### It will ask you to create a new folder, accept it.
+    `cd .\src\data'
+    `python 01-initial_data_creation.py` ### 1 file log (./logs) and 1 file csv (./references) whith the informations of database_images are created
 
+### 3- Execute the unit tests to control if initial dataset creation is right.
+    'python -m pytest 03-TU_data.py 
+
+
+
+
+### Old project - Datascientest example
 ### 3- Execute make_dataset.py initializing `./data/raw` as input file path and `./data/preprocessed` as output file path.
 
     `python .\src\data\make_dataset.py`
