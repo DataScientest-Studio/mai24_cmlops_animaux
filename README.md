@@ -16,13 +16,15 @@ Project Organization
     │   │   ├── mdl_pipeline_dag.py <- Pipeline for new model training and management
     │   ├── logs
     │   ├── plugins
+    │   ├── .env.example            <- Airflow environnement variables (to complete and rename .env)
+    │   └── *docker-compose.yaml*
     │
     ├── data
     │   ├── 1. Initial              <- The original, immutable data dump.
     │   ├── 2. External             <- New data Collection (Production)
     │   ├── 3. interim              <- Intermediate data that has been transformed and waiting model
     │   │                              integration
-    │   ├── 4. processed            <- The final, canonical data sets for modeling.
+    │   └── 4. processed            <- The final, canonical data sets for modeling.
     │
     ├── logs                        <- Logs from pipelines
     │
@@ -33,7 +35,7 @@ Project Organization
     │   ├── 01-initial_data_creation.jpg    <- Diagram for database inititialization
     │   ├── 02-data_ingestion.jpg           <- Diagram for new data ingestion
     │   ├── DATA_INIT_OTHERS.csv    <- URLs to download "Others" classe for initial dataset
-    │   ├── DATA_INIT.zip           <- Initial data
+    │   └── DATA_INIT.zip           <- Initial data
     │                                  https://www.kaggle.com/datasets/likhon148/animal-data
     │
     ├── src                         <- Source code for use in this project.
@@ -52,14 +54,14 @@ Project Organization
     │   │   │   ├── Presentation.py
     │   │   │   ├── Ui.py
     │   │   ├── streamlit.py        <- Script to run Streamlit application
-    │   │   ├── *Dockerfile.app*
+    │   │   └── *Dockerfile.app*
     │   │      
     │   ├── config                  <- Various files for application configuration
     │   │   ├── mlruns_init         <- Initial model and MLflow configuration
     │   │   ├── .env.example        <- Environnement variables (to complete and rename .env)
     │   │   ├── config_manager.py   <- Various parameters like model config, ...
     │   │   ├── config_path.py
-    │   │   ├── ex_other_cfg_model.py        <- Example of other model config 
+    │   │   └── ex_other_cfg_model.py        <- Example of other model config 
     │   │             
     │   ├── data                    <- Scripts to download and generate data
     │   │   ├── __init__.py
