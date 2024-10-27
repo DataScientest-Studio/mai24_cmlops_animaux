@@ -1,11 +1,12 @@
 import os
 import shutil
+import json
 
 
 # Fonction pour créer un dossier
 def create_folder(folder_path):
     # Teste si le dossier existe
-    folder_ab = '/'.join(str(folder_path).split('\\')[-2:])
+    folder_ab = os.path.join(*os.path.normpath(folder_path).split(os.sep)[-2:])
     if os.path.isdir(folder_path):
         return (True, f"'{folder_ab}' déjà existant")
     else:
@@ -21,7 +22,7 @@ def create_folder(folder_path):
 
 # Fonction pour supprimer un dossier
 def remove_folder(folder_path):
-    folder_ab = '/'.join(str(folder_path).split('\\')[-2:])
+    folder_ab = os.path.join(*os.path.normpath(folder_path).split(os.sep)[-2:])
     # Vérifier si le chemin éxiste et est un répertoire
     if os.path.isdir(folder_path):
         try:
@@ -90,11 +91,11 @@ def exist_test(path):
 # Fonction copie / colle fichier
 def cp_file(file_path, file_dest):
     try:
-        filename = str(file_dest).split('\\')[-1:][0]
+        filename = os.path.basename(file_dest)
         # teste si file_path existe
         if exist_test(file_path):
             # teste si le chemin de destination existe
-            path_dest = '/'.join(str(file_dest).split('\\')[:-1])
+            path_dest = os.path.dirname(file_dest)
             if exist_test(path_dest):
                 shutil.copy(file_path, file_dest)
                 return (True, f"Le fichier '{filename}' a bien été copié")
@@ -106,7 +107,7 @@ def cp_file(file_path, file_dest):
                 else:
                     return (False, cf[1])
         else:
-            filename = str(file_dest).split('\\')[-1:][0]
+            filename = os.path.basename(file_path)
             return (False, f"Le fichier '{filename}' n'existe pas")
     except Exception as e:
         return (False, e)
@@ -115,7 +116,7 @@ def cp_file(file_path, file_dest):
 # Fonction pour supprimer un fichier
 def remove_file(file_path):
     try:
-        filename = str(file_path).split('\\')[-1:][0]
+        filename = os.path.basename(file_path)
 
         # teste si file_path existe
         if exist_test(file_path):
@@ -125,5 +126,17 @@ def remove_file(file_path):
             return (False, f"Le fichier '{filename}' n'existe pas")
     except IsADirectoryError:
         return (False, "Le fichier à supprimer est un dossier")
+    except Exception as e:
+        return (False, e)
+
+
+# Fonction pour sauvegarder un dictionnaire en format json
+def save_jsonfile(dest_path, filename_dest, dict_source):
+    """ Sauvegarde de dictionnaires en format json """
+    try:
+        save_path = os.path.join(dest_path, filename_dest + ".json")
+        with open(save_path, "w") as f:
+            json.dump(dict_source, f, indent=4)
+        return (True, save_path)
     except Exception as e:
         return (False, e)

@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1729175949045
+current_stage: Production
+description: ''
+last_updated_timestamp: 1729976615603
+name: Animals_Models
+run_id: a333d426f27443d5b58a445d5101a3e3
+run_link: ''
+source: file:///./mlruns/476729359720012676/a333d426f27443d5b58a445d5101a3e3/artifacts/model/MobileNetV2
+status: READY
+status_message: null
+storage_location: file:///./mlruns/476729359720012676/a333d426f27443d5b58a445d5101a3e3/artifacts/model/MobileNetV2
+user_id: null
+version: 1

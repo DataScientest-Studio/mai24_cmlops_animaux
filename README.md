@@ -8,56 +8,88 @@ Project Organization
 
     ├── LICENSE
     ├── README.md                   <- The top-level README for developers using this project.
+    ├── .gitignore
+    │
+    ├── airflow                     <- Source for use airflow in this project.
+    │   ├── config              
+    │   ├── dags                    
+    │   │   ├── mdl_pipeline_dag.py <- Pipeline for new model training and management
+    │   ├── logs
+    │   ├── plugins
+    │
     ├── data
-    │   ├── 1. Initial              <- The original, immutable data dump.
-    |   ├── 2. External             <- New data Collection (Production)
-    │   ├── 3. interim              <- Intermediate data that has been transformed and waiting model
-    |   |                              integration
-    │   ├── 4. processed            <- The final, canonical data sets for modeling.
+    │   ├── 1. Initial              <- The original, immutable data dump.
+    │   ├── 2. External             <- New data Collection (Production)
+    │   ├── 3. interim              <- Intermediate data that has been transformed and waiting model
+    │   │                              integration
+    │   ├── 4. processed            <- The final, canonical data sets for modeling.
     │
     ├── logs                        <- Logs from pipelines
     │
-    ├── models                      <- Trained and serialized models, model predictions, or model
-    |                                   summaries
-    │
-    ├── notebooks                   <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                               the creator's initials, and a short `-` delimited description, e.g.
-    │                               `1.0-jqp-initial-data-exploration`.
+    ├── models                      <- MLflow data (experiment, run, models, artifacts, ...)
     │
     ├── references                  <- Data dictionaries, manuals, and all other explanatory materials.
-    |   ├── DATA_INIT_OTHERS.csv    <- URLs to download "Others" classe for initial dataset
-    │   |── DATA_INIT.zip           <- Initial data
-    |                                  https://www.kaggle.com/datasets/likhon148/animal-data
-    |
-    ├── reports                     <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures                 <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt            <- The requirements file for reproducing the analysis environment
-    |                                  (except train_model -> cf. requirements_dl.txt)
+    │   ├── 00-architecture.jpg     <- Application architecture diagram
+    │   ├── 01-initial_data_creation.jpg    <- Diagram for database inititialization
+    │   ├── 02-data_ingestion.jpg           <- Diagram for new data ingestion
+    │   ├── DATA_INIT_OTHERS.csv    <- URLs to download "Others" classe for initial dataset
+    │   ├── DATA_INIT.zip           <- Initial data
+    │                                  https://www.kaggle.com/datasets/likhon148/animal-data
     │
     ├── src                         <- Source code for use in this project.
     │   ├── __init__.py             <- Makes src a Python module
+    │   ├── *docker-compose.yaml*    
     │   │
+    │   ├── application             <- Scripts for streamlit app
+    │   │   ├── assets                    
+    │   │   │   ├── banners         <- Images used for pages banner
+    │   │   │   ├── accelerated_prod.csv    <- URLs to download images for demonstration
+    │   │   ├── tabs                <- scripts for tabs
+    │   │   │   ├── Acc_prod.py
+    │   │   │   ├── Ai.py
+    │   │   │   ├── Evol.py
+    │   │   │   ├── Home.py
+    │   │   │   ├── Presentation.py
+    │   │   │   ├── Ui.py
+    │   │   ├── streamlit.py        <- Script to run Streamlit application
+    │   │   ├── *Dockerfile.app*
+    │   │      
+    │   ├── config                  <- Various files for application configuration
+    │   │   ├── mlruns_init         <- Initial model and MLflow configuration
+    │   │   ├── .env.example        <- Environnement variables (to complete and rename .env)
+    │   │   ├── config_manager.py   <- Various parameters like model config, ...
+    │   │   ├── config_path.py
+    │   │   ├── ex_other_cfg_model.py        <- Example of other model config 
+    │   │             
     │   ├── data                    <- Scripts to download and generate data
     │   │   ├── __init__.py
-    |   |   ├── 01-initial_data_creation.py <- Pipeline for dataset init creation
-    |   |   ├── 03-TU_data.py               <- Unit tests for data
+    │   │   ├── 00-initial_data_creation.py <- Pipeline for dataset init creation
+    │   │   ├── data_ingestion.py           <- Processing for data integration
     │   │   ├── data_utils.py               <- Usefull fonctions for data (eg. create folder, ...)
+    │   │   ├── data_validation.py          <- Processing for data labellisation
+    │   │   ├── db_api.py
+    │   │   ├── *Dockerfile.data*
     │   │   ├── extract_dataset_init.py     <- To extract DATA_INIT.zip to data/1. Initial
-    |   |   ├── pexels_api.py               <- Api to download pictures from https://www.pexels.com
-    │   │   └── preprocessing.py            <- Pictures preprocessing
-    |   |
-    │   ├── models                  <- Scripts to train models and then use trained models to make
-    │   │   │                          predictions
-    │   │   ├── 
-    │   │   └── 
-    |   |
-    │   ├── visualization           <- Scripts to create exploratory and results oriented visualizations
-    │   │   └── 
-    |   |
-    |   ├── .env.exemple            <- Environnement variables (to rename .env)
-    │   ├── config_manager.py
-    |   └── config_path.py
+    │   │   ├── model_ds_integ.py           <- To update model dataset with new data
+    │   │   ├── pexels_api_utils.py         <- Api to download pictures from https://www.pexels.com
+    │   │   └── TU-data.py                  <- Unit tests for dataset init creation
+    │   │
+    │   ├── mlflow                  <- Scripts to use MLflow for models management (tracking, saving, 
+    │   │   │                              runing, ...)
+    │   │   ├── *Dockerfile.mlflow*
+    │   │   ├── mlf_api.py          <- API for models listing, registering, updating status, ...
+    │   │   ├── mlf_functions.py    <- MLflow functions used in API
+    │   │   └── mlflow_start.sh     <- Scripts to run at container startup
+    │   │
+    │   ├── predict                 <- Scripts to make prédictions
+    │   │   ├── *Dockerfile.predict*
+    │   │   ├── predict_api.py
+    │   │   └── predict_model.py
+    │   │
+    │   ├── train                   <- Scripts to model training
+    │   │   ├── *Dockerfile.train*  <- is set up for GPU use
+    │   │   ├── train_api.py
+    │   │   └── train_model.py
 
 ---------
 

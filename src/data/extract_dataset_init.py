@@ -1,7 +1,7 @@
 import zipfile
 import os
 from pathlib import Path
-from data.data_utils import create_folder, remove_folder
+from data_utils import create_folder, remove_folder
 
 
 def extract_zip_init(source, destination):
@@ -10,14 +10,14 @@ def extract_zip_init(source, destination):
     if step1[0] is False:
         return (False, f"Erreur création dossier : {step1[1]}")
 
-    source_ab = '/'.join(str(source).split('\\')[-2:])
+    source_ab = os.path.join(*os.path.normpath(source).split(os.sep)[-2:])
     try:
         with zipfile.ZipFile(source, 'r') as zip_ref:
             # Lister tous les fichiers dans le fichier ZIP
             all_files = zip_ref.namelist()
             folders = []
             for file in all_files:
-                folder = '/'.join(file.split('/')[-2:-1])
+                folder = os.path.normpath(file).split(os.sep)[-2]
                 if folder not in folders:
                     folders.append(folder)
                 extract_to_path = os.path.join(destination, folder)
@@ -39,7 +39,8 @@ n'a pas été trouvé.")
     # suppression des dossiers créés inutilement
     for folder in folders:
         step3 = remove_folder(os.path.join(destination, folder,
-                                           file.split('/')[0]))
+                                           os.path.normpath(
+                                               file).split(os.sep)[0]))
         if step3[0] is False:
             return (False, f"Erreur suppression dossier : {step3[1]}")
 
