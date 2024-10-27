@@ -110,11 +110,13 @@ Project Organization
 
 ### 2- Create the .env for Airflow in /airflow
 
-    AIRFLOW_UID=
+    AIRFLOW_UID=                   # Usually 50000
     _AIRFLOW_WWW_USER_USERNAME=''  # Set administrator name for Airflow
     _AIRFLOW_WWW_USER_PASSWORD=''  # Set administrator password for Airflow
     APP_LOGIN = ''                 # Use the same value as ADMIN_NAME
     APP_PWD = ''                   # Use the same value as ADMIN_PWD
+
+    Save this file to airflow/.env
 
 
 ### 3- Launch application docker-compose
@@ -126,8 +128,8 @@ Project Organization
     NB: the docker-compose file uses images from the docker hub
 
 
-### 4- Launch Airflow docker-compose
-    `cd ../airflow`
+### 4- In an other terminal Launch Airflow docker-compose
+    `cd mai24_cmlops_animaux/airflow`
     `docker compose up airflow-init`
     `docker compose up`
 
