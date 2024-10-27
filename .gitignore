@@ -66,6 +66,7 @@ target/
 # Database
 *.db
 *.rdb
+*.json
 
 # Pycharm
 .idea
@@ -92,7 +93,3 @@ target/
 # Mypy cache
 .mypy_cache/
 *.joblib
-
-# Execution documents
-database_images.csv
- 
