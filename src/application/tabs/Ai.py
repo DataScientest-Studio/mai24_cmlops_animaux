@@ -820,7 +820,7 @@ de base nommé *:blue[initial]* :
             (*seuil défini dans le fichier de configuration*).
             """)
 
-            st.markdonw("""
+            st.markdown("""
             Il serait également possible de mettre en place une page 'admin' \
             pour un ré-entrainement manuel et une mise en production manuelle \
             d'un modèle.\n
