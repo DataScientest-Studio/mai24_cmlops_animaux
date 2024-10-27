@@ -97,17 +97,42 @@ Project Organization
 
 ## Steps to follow 
 
-Convention : All python scripts must be run from the root specifying the relative file path.
+### 1- Create the .env for application in /src/application/config
 
-### 1- Create a virtual environment using Virtualenv.
+    NB: you will need to create an account on PEXELS(https://www.pexels.com) to obtain an API key.
 
-    `python -m venv my_env`
+    PEXELS_API_KEY= ''
+    ADMIN_NAME = ''  # Set administrator name for application
+    ADMIN_PWD = ''   # Set administrator password for application
 
-###   Activate it 
+    Save this file to src/application/config/.env
 
-    `./my_env/Scripts/activate`
 
-###   Install the packages from requirements.txt
+### 2- Create the .env for Airflow in /airflow
+
+    AIRFLOW_UID=
+    _AIRFLOW_WWW_USER_USERNAME=''  # Set administrator name for Airflow
+    _AIRFLOW_WWW_USER_PASSWORD=''  # Set administrator password for Airflow
+    APP_LOGIN = ''                 # Use the same value as ADMIN_NAME
+    APP_PWD = ''                   # Use the same value as ADMIN_PWD
+
+
+### 3- Launch application docker-compose
+    `cd mai24_cmlops_animaux/src`
+    `docker compose up`
+
+    For the first run, this will take some time (around 5-6 minutes)
+
+    NB: the docker-compose file uses images from the docker hub
+
+
+### 4- Launch Airflow docker-compose
+    `cd ../airflow`
+    `docker compose up airflow-init`
+    `docker compose up`
+
+
+
 
     `pip install -r .\requirements.txt`
 
