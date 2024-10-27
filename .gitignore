@@ -25,7 +25,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-mlruns/
+# mlruns/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -66,7 +66,7 @@ target/
 # Database
 *.db
 *.rdb
-*.json
+database_images.json
 
 # Pycharm
 .idea
@@ -93,3 +93,6 @@ target/
 # Mypy cache
 .mypy_cache/
 *.joblib
+
+# Execution documents
+db_init.json

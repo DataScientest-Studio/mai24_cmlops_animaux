@@ -40,8 +40,8 @@ services:
       - models_volume:/app/models/mlruns
     environment:
       - DOCKER_ENV=True
-    # ports:
-    #   - "8002:8002"
+    ports:
+      - "8002:8002"
 
   train:
     image: gpe25/animal_recognition_train:1.0.0

@@ -19,12 +19,16 @@ def run():
 
     st.markdown(
         """
-        ### Fonctionnalités :\n
+        ### Améliorations :
+        >- Gestion des configurations avec YAML
+        >- Ajout de logs pour l'ingestion de nouvelles données\n
+
+        ### Fonctionnalités :
         >- monitoring
         >- traitement d'images (détourage, palette couleur, ...)
         >- interprétabilité modèle (GradCam)\n
 
-        ### Évolutions :\n
+        ### Évolutions :
         >- Passage json->mongoDB pour la gestion de la base documents
         >- Déployer sur une architecture cloud
 
