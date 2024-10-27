@@ -29,6 +29,7 @@ Project Organization
     ├── logs                        <- Logs from pipelines
     │
     ├── models                      <- MLflow data (experiment, run, models, artifacts, ...)
+    │   └── mlruns                  <- Initial model and MLflow configuration
     │
     ├── references                  <- Data dictionaries, manuals, and all other explanatory materials.
     │   ├── 00-architecture.jpg     <- Application architecture diagram
@@ -57,7 +58,6 @@ Project Organization
     │   │   └── *Dockerfile.app*
     │   │      
     │   ├── config                  <- Various files for application configuration
-    │   │   ├── mlruns_init         <- Initial model and MLflow configuration
     │   │   ├── .env.example        <- Environnement variables (to complete and rename .env)
     │   │   ├── config_manager.py   <- Various parameters like model config, ...
     │   │   ├── config_path.py
@@ -132,42 +132,9 @@ Project Organization
     `docker compose up`
 
 
+### 5- Go to the Streamlit app
+    http://localhost:8501/
+
+    the first action is to initialize the database
 
 
-    `pip install -r .\requirements.txt`
-
-### 2- Execute '01-initial_data_creation' to create the initial dataset.
-
-    `cd .\src\data'
-    `python 01-initial_data_creation.py` ### 1 file log (./logs) and 1 file csv (./references) whith the informations of database_images are created
-
-### 3- Execute the unit tests to control if initial dataset creation is right.
-    'python -m pytest 03-TU_data.py 
-
-
-
-
-### Old project - Datascientest example
-### 3- Execute make_dataset.py initializing `./data/raw` as input file path and `./data/preprocessed` as output file path.
-
-    `python .\src\data\make_dataset.py`
-
-### 4- Execute train_model.py to instanciate the model in joblib format
-
-    `python .\src\models\train_model.py`
-
-### 5- Finally, execute predict_model.py with respect to one of these rules :
-  
-  - Provide a json file as follow : 
-
-    
-    `python ./src/models/predict_model.py ./src/models/test_features.json`
-
-  test_features.json is an example that you can try 
-
-  - If you do not specify a json file, you will be asked to enter manually each feature. 
-
-
-------------------------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
