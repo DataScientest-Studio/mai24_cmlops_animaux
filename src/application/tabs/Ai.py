@@ -812,20 +812,22 @@ de base nommé *:blue[initial]* :
             Une pipeline de ré-entrainement automatique du modèle via \
             [*Airflow*](http://127.0.0.1:8080) a été mise en place. \n\
 
-            ## Fonctionnement :
+            ### Fonctionnement :
             1- Les images labellisées non intégrées au dataset du \
-            modèle sont stockées dans une 'base tampon' (*3. Interim*)\n \
+            modèle sont stockées dans une 'base tampon' grey:[(*3. Interim*)] \
+            \n
             2- Dès que le nombre minimum d'images* par classe est atteint, \
-            une pipeline CI/CD est lancée. \n\
-            (*seuil défini dans le fichier de configuration*).
+            une **pipeline CI/CD** est lancée. \n \
+            gray:[(*seuil défini dans le fichier de configuration*)].
             """)
 
-            st.markdown("""
-            Il serait également possible de mettre en place une page 'admin' \
-            pour un ré-entrainement manuel et une mise en production manuelle \
-            d'un modèle.\n
+            st.markdown("""\n
+            #### NB :\n
+            * Il serait également possible de mettre en place une page 'admin'\
+             pour un ré-entrainement manuel et une mise en production manuelle\
+             d'un modèle.\n
             * Un chargment d'un fichier de configuration du modèle pourrait \
             être également envisagé puisque tous les paramètres du modèles \
-            (layers, callbacks, optimizers, ...) sont définis dans le fichier \
-            de configuration.
+            :gray[(layers, callbacks, optimizers, ...)] sont définis dans \
+            le fichier de configuration.
             """)
