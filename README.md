@@ -97,7 +97,7 @@ Project Organization
 
 ## Steps to follow 
 
-### 1- Create the .env for application in /src/application/config
+### 1- Create the .env for application in /src/config
 
     NB: you will need to create an account on PEXELS(https://www.pexels.com) to obtain an API key.
 
