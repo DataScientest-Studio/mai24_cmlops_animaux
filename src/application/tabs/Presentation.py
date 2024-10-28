@@ -57,7 +57,7 @@ def run():
                 ressources limitées.
             >- Pour l'inférence, le modèle est converti en format \
                 :blue[TFLite], optimisé pour des appareils mobiles \
-                et embarqués.\n \n
+                et embarqués.\n\n
 
             ### Pipeline CI/CD :\n
             Utilisation de :blue[Airflow] pour l'orchestration.\n

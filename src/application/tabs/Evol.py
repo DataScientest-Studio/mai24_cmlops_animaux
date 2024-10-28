@@ -21,16 +21,15 @@ def run():
         """
         ### Améliorations :
         >- Gestion des configurations avec YAML
-        >- Ajout de logs pour l'ingestion de nouvelles données\n
+        >- Ajout de logs pour l'ingestion de nouvelles données\n\n
 
         ### Fonctionnalités :
         >- monitoring
         >- traitement d'images (détourage, palette couleur, ...)
-        >- interprétabilité modèle (GradCam)\n
+        >- interprétabilité modèle (GradCam)\n\n
 
         ### Évolutions :
         >- Passage json->mongoDB pour la gestion de la base documents
         >- Déployer sur une architecture cloud
-
         """
     )

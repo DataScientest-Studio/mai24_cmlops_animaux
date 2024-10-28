@@ -814,15 +814,15 @@ de base nommé *:blue[initial]* :
 
             ### Fonctionnement :
             1- Les images labellisées non intégrées au dataset du \
-            modèle sont stockées dans une 'base tampon' grey:[(*3. Interim*)] \
+            modèle sont stockées dans une 'base tampon' :gray[(*3. Interim*)] \
             \n
             2- Dès que le nombre minimum d'images* par classe est atteint, \
-            une **pipeline CI/CD** est lancée. \n \
-            gray:[(*seuil défini dans le fichier de configuration*)].
+            une :green[**pipeline CI/CD**] est lancée.\n \
+            :gray[(*seuil défini dans le fichier de configuration*)].
             """)
 
             st.markdown("""\n
-            #### NB :\n
+            #### Compléments :\n
             * Il serait également possible de mettre en place une page 'admin'\
              pour un ré-entrainement manuel et une mise en production manuelle\
              d'un modèle.\n
